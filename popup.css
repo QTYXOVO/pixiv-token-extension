@@ -143,6 +143,12 @@ h1 {
 
 .btn-copy:hover { background: #e2e6ec; }
 
+.cookie-section {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid #e5e8ee;
+}
+
 .tip {
   margin-top: 12px;
   font-size: 11px;

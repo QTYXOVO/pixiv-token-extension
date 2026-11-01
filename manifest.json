@@ -1,9 +1,9 @@
 {
   "manifest_version": 3,
   "name": "Pixiv Token 获取器",
-  "version": "1.0.0",
-  "description": "通过 pixiv 官方 OAuth 流程登录，获取 access_token / refresh_token，并可一键复制、刷新。",
-  "permissions": ["webRequest", "tabs", "storage"],
+  "version": "1.1.0",
+  "description": "通过 pixiv 官方 OAuth 流程登录，获取 access_token / refresh_token 与 Web 端 Cookie，并可一键复制、刷新。",
+  "permissions": ["webRequest", "tabs", "storage", "cookies"],
   "host_permissions": ["*://*.pixiv.net/*"],
   "background": {
     "service_worker": "background.js"

@@ -9,6 +9,8 @@ const userCard = document.getElementById("user-card");
 const userAvatar = document.getElementById("user-avatar");
 const userName = document.getElementById("user-name");
 const userAccount = document.getElementById("user-account");
+const btnCookie = document.getElementById("btn-cookie");
+const cookieEl = document.getElementById("cookie-value");
 
 const STATUS_TEXT = {
   idle: "尚未获取 Token",
@@ -107,4 +109,29 @@ chrome.storage.onChanged.addListener((changes, area) => {
   if (changes.pixivToken) renderToken(changes.pixivToken.newValue);
 });
 
+// ---------- Cookie（Web 端 PHPSESSID） ----------
+async function loadCookie(showError) {
+  btnCookie.disabled = true;
+  try {
+    const cookie = await chrome.cookies.get({ url: "https://www.pixiv.net/", name: "PHPSESSID" });
+    if (cookie) {
+      cookieEl.value = `PHPSESSID=${cookie.value}`;
+      return true;
+    }
+    if (showError) {
+      cookieEl.value = "";
+      cookieEl.placeholder = "未获取到，请先在打开的页面登录 pixiv";
+      chrome.tabs.create({ url: "https://www.pixiv.net/" });
+    }
+  } catch (e) {
+    if (showError) cookieEl.placeholder = `获取失败：${(e && e.message) || e}`;
+  } finally {
+    btnCookie.disabled = false;
+  }
+  return false;
+}
+
+btnCookie.addEventListener("click", () => loadCookie(true));
+
 load();
+loadCookie(false); // 打开弹窗时静默尝试读取一次

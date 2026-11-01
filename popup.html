@@ -40,6 +40,15 @@
     <button id="btn-refresh" class="btn btn-secondary">用 Refresh Token 刷新 Access Token</button>
   </section>
 
+  <section id="cookie-section" class="cookie-section">
+    <label class="field-label">Cookie（Web 端 PHPSESSID）</label>
+    <div class="field">
+      <textarea id="cookie-value" readonly rows="2" placeholder="点击下方按钮获取"></textarea>
+      <button class="btn btn-copy" data-copy="cookie-value">复制</button>
+    </div>
+    <button id="btn-cookie" class="btn btn-secondary">获取 pixiv.net Cookie</button>
+  </section>
+
   <p class="tip">Token 通过 pixiv 官方 OAuth 获取，等同于账号密码，请勿泄露。</p>
 
   <script src="popup.js"></script>

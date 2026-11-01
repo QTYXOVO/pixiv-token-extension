@@ -12,6 +12,7 @@
 - 展示 `access_token` / `refresh_token`、过期倒计时，一键复制
 - 展示登录用户信息（头像、昵称、UID）
 - 支持用 `refresh_token` 直接刷新 `access_token`
+- 一键获取 Web 端 `PHPSESSID` Cookie（适用于 Pixeval 等使用 WebAPI 的工具）
 
 ## 安装
 
@@ -28,6 +29,10 @@
 4. 在弹窗中复制 `access_token` / `refresh_token`
 
 `access_token` 有效期约 1 小时，过期后可用 `refresh_token` 在弹窗中一键刷新，无需重新登录。
+
+### 获取 Web 端 Cookie
+
+点击「获取 pixiv.net Cookie」，扩展会读取浏览器中 `www.pixiv.net` 的 `PHPSESSID` 并按 `PHPSESSID=xxx` 格式展示，复制后即可填入 Pixeval 等工具。若未获取到，会自动打开 pixiv.net，登录后重新点击即可。
 
 ## 工作原理
 
