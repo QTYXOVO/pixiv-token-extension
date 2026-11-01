@@ -1,5 +1,9 @@
 # Pixiv Token 获取器
 
+![AI Generated](https://img.shields.io/badge/Code-AI%20Generated-blueviolet)
+
+> 🤖 本项目代码由 AI 助手生成，仅供学习交流使用，使用前请自行审阅代码。
+
 一个 Chrome / Edge 浏览器扩展（Manifest V3），通过 pixiv 官方 OAuth（PKCE）流程登录，快速获取 `access_token` 和 `refresh_token`，用于调用 pixiv API（如 pixivpy 等第三方客户端）。
 
 ## 功能
