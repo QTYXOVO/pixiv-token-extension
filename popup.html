@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pixiv Token 获取器</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <header>
+    <span class="logo">Px</span>
+    <h1>Pixiv Token 获取器</h1>
+  </header>
+
+  <div id="status" class="status status-idle">尚未获取 Token</div>
+
+  <button id="btn-login" class="btn btn-primary">登录 pixiv 并获取 Token</button>
+
+  <section id="result" class="hidden">
+    <div id="user-card" class="user-card hidden">
+      <img id="user-avatar" alt="" referrerpolicy="no-referrer" />
+      <div class="user-meta">
+        <div id="user-name" class="user-name"></div>
+        <div id="user-account" class="user-account"></div>
+      </div>
+    </div>
+
+    <label class="field-label">Access Token <span id="expire" class="expire"></span></label>
+    <div class="field">
+      <textarea id="access-token" readonly rows="3"></textarea>
+      <button class="btn btn-copy" data-copy="access-token">复制</button>
+    </div>
+
+    <label class="field-label">Refresh Token</label>
+    <div class="field">
+      <textarea id="refresh-token" readonly rows="3"></textarea>
+      <button class="btn btn-copy" data-copy="refresh-token">复制</button>
+    </div>
+
+    <button id="btn-refresh" class="btn btn-secondary">用 Refresh Token 刷新 Access Token</button>
+  </section>
+
+  <p class="tip">Token 通过 pixiv 官方 OAuth 获取，等同于账号密码，请勿泄露。</p>
+
+  <script src="popup.js"></script>
+</body>
+</html>

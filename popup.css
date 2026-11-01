@@ -1,0 +1,151 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 340px;
+  padding: 14px;
+  font-family: "Segoe UI", "Microsoft YaHei", sans-serif;
+  font-size: 13px;
+  color: #1f2329;
+  background: #f7f8fa;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.logo {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #0096fa;
+  color: #fff;
+  font-weight: 700;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+h1 {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.status {
+  padding: 8px 10px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  font-size: 12px;
+  line-height: 1.5;
+  word-break: break-all;
+}
+
+.status-idle      { background: #eef0f3; color: #5f6670; }
+.status-waiting   { background: #fff7e6; color: #ad6800; }
+.status-exchanging{ background: #e6f4ff; color: #0958d9; }
+.status-success   { background: #f6ffed; color: #389e0d; }
+.status-error     { background: #fff1f0; color: #cf1322; }
+
+.btn {
+  width: 100%;
+  border: none;
+  border-radius: 6px;
+  padding: 9px 0;
+  font-size: 13px;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.btn:hover { opacity: 0.88; }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.btn-primary {
+  background: #0096fa;
+  color: #fff;
+  margin-bottom: 12px;
+}
+
+.btn-secondary {
+  background: #1f2329;
+  color: #fff;
+  margin-top: 10px;
+}
+
+.hidden { display: none !important; }
+
+.user-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #fff;
+  border: 1px solid #e5e8ee;
+  border-radius: 8px;
+  padding: 8px 10px;
+  margin-bottom: 12px;
+}
+
+.user-card img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #eee;
+}
+
+.user-name { font-weight: 600; font-size: 13px; }
+.user-account { color: #8a919e; font-size: 12px; }
+
+.field-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #5f6670;
+  margin: 8px 0 4px;
+}
+
+.expire { color: #ad6800; }
+
+.field {
+  position: relative;
+}
+
+.field textarea {
+  width: 100%;
+  resize: none;
+  border: 1px solid #e5e8ee;
+  border-radius: 6px;
+  padding: 8px;
+  padding-bottom: 28px;
+  font-family: Consolas, monospace;
+  font-size: 11px;
+  background: #fff;
+  color: #1f2329;
+  word-break: break-all;
+}
+
+.btn-copy {
+  position: absolute;
+  right: 6px;
+  bottom: 6px;
+  width: auto;
+  padding: 3px 12px;
+  font-size: 11px;
+  background: #eef0f3;
+  color: #1f2329;
+}
+
+.btn-copy:hover { background: #e2e6ec; }
+
+.tip {
+  margin-top: 12px;
+  font-size: 11px;
+  color: #8a919e;
+  line-height: 1.5;
+}
