@@ -28,13 +28,19 @@
     <label class="field-label">Access Token <span id="expire" class="expire"></span></label>
     <div class="field">
       <textarea id="access-token" readonly rows="3"></textarea>
-      <button class="btn btn-copy" data-copy="access-token">复制</button>
+      <div class="field-actions">
+        <button class="btn btn-toggle" data-target="access-token">显示</button>
+        <button class="btn btn-copy" data-copy="access-token">复制</button>
+      </div>
     </div>
 
     <label class="field-label">Refresh Token</label>
     <div class="field">
       <textarea id="refresh-token" readonly rows="3"></textarea>
-      <button class="btn btn-copy" data-copy="refresh-token">复制</button>
+      <div class="field-actions">
+        <button class="btn btn-toggle" data-target="refresh-token">显示</button>
+        <button class="btn btn-copy" data-copy="refresh-token">复制</button>
+      </div>
     </div>
 
     <button id="btn-refresh" class="btn btn-secondary">用 Refresh Token 刷新 Access Token</button>
@@ -44,10 +50,15 @@
     <label class="field-label">Cookie（Web 端 PHPSESSID）</label>
     <div class="field">
       <textarea id="cookie-value" readonly rows="2" placeholder="点击下方按钮获取"></textarea>
-      <button class="btn btn-copy" data-copy="cookie-value">复制</button>
+      <div class="field-actions">
+        <button class="btn btn-toggle" data-target="cookie-value">显示</button>
+        <button class="btn btn-copy" data-copy="cookie-value">复制</button>
+      </div>
     </div>
     <button id="btn-cookie" class="btn btn-secondary">获取 pixiv.net Cookie</button>
   </section>
+
+  <button id="btn-clear" class="clear-btn">清除已保存的数据</button>
 
   <p class="tip">Token 通过 pixiv 官方 OAuth 获取，等同于账号密码，请勿泄露。</p>
 

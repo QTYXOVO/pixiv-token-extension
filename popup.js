@@ -12,6 +12,22 @@ const userAccount = document.getElementById("user-account");
 const btnCookie = document.getElementById("btn-cookie");
 const cookieEl = document.getElementById("cookie-value");
 
+// ---------- 字段遮罩 ----------
+const fieldState = {}; // id -> { value, masked }
+
+function setField(id, value) {
+  fieldState[id] = { value, masked: true };
+  renderField(id);
+}
+
+function renderField(id) {
+  const el = document.getElementById(id);
+  const st = fieldState[id];
+  el.value = st && st.value ? (st.masked ? "•".repeat(Math.min(st.value.length, 24)) : st.value) : "";
+  const btn = document.querySelector(`.btn-toggle[data-target="${id}"]`);
+  if (btn) btn.textContent = st && !st.masked ? "隐藏" : "显示";
+}
+
 const STATUS_TEXT = {
   idle: "尚未获取 Token",
   waiting: "已打开登录页，请完成登录…",
@@ -38,8 +54,8 @@ function renderToken(token) {
     return;
   }
   resultEl.classList.remove("hidden");
-  accessEl.value = token.access_token || "";
-  refreshEl.value = token.refresh_token || "";
+  setField("access-token", token.access_token || "");
+  setField("refresh-token", token.refresh_token || "");
 
   if (token.user) {
     userCard.classList.remove("hidden");
@@ -82,7 +98,8 @@ btnLogin.addEventListener("click", async () => {
 });
 
 btnRefresh.addEventListener("click", async () => {
-  const rt = refreshEl.value.trim();
+  const st = fieldState["refresh-token"];
+  const rt = st && st.value ? st.value.trim() : "";
   if (!rt) return;
   btnRefresh.disabled = true;
   btnRefresh.textContent = "刷新中…";
@@ -96,11 +113,27 @@ btnRefresh.addEventListener("click", async () => {
 
 document.querySelectorAll(".btn-copy").forEach((btn) => {
   btn.addEventListener("click", async () => {
-    const target = document.getElementById(btn.dataset.copy);
-    await navigator.clipboard.writeText(target.value);
+    const st = fieldState[btn.dataset.copy];
+    if (!st || !st.value) return;
+    await navigator.clipboard.writeText(st.value);
     btn.textContent = "已复制";
     setTimeout(() => (btn.textContent = "复制"), 1200);
   });
+});
+
+document.querySelectorAll(".btn-toggle").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const st = fieldState[btn.dataset.target];
+    if (!st || !st.value) return;
+    st.masked = !st.masked;
+    renderField(btn.dataset.target);
+  });
+});
+
+document.getElementById("btn-clear").addEventListener("click", async () => {
+  if (!confirm("确定清除已保存的 Token 和用户信息吗？")) return;
+  await chrome.storage.local.remove(["pixivToken", "pixivTokenStatus"]);
+  ["access-token", "refresh-token", "cookie-value"].forEach((id) => setField(id, ""));
 });
 
 chrome.storage.onChanged.addListener((changes, area) => {
@@ -119,11 +152,11 @@ async function loadCookie(showError) {
   try {
     const cookie = await chrome.cookies.get({ url: "https://www.pixiv.net/", name: "PHPSESSID" });
     if (cookie) {
-      cookieEl.value = `PHPSESSID=${cookie.value}`;
+      setField("cookie-value", `PHPSESSID=${cookie.value}`);
       return true;
     }
     if (showError) {
-      cookieEl.value = "";
+      setField("cookie-value", "");
       cookieEl.placeholder = "未获取到，请先在打开的页面登录 pixiv";
       chrome.tabs.create({ url: "https://www.pixiv.net/" });
     }

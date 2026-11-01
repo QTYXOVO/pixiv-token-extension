@@ -13,6 +13,8 @@
 - 展示登录用户信息（头像、昵称、UID）
 - 支持用 `refresh_token` 直接刷新 `access_token`
 - 一键获取 Web 端 `PHPSESSID` Cookie（适用于 Pixeval 等使用 WebAPI 的工具）
+- Token 默认遮罩显示，防止截图/肩窥泄露
+- 支持一键清除本地保存的数据
 
 ## 安装
 

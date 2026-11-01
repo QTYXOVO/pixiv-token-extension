@@ -130,10 +130,15 @@ h1 {
   word-break: break-all;
 }
 
-.btn-copy {
+.field-actions {
   position: absolute;
   right: 6px;
   bottom: 6px;
+  display: flex;
+  gap: 6px;
+}
+
+.field-actions .btn {
   width: auto;
   padding: 3px 12px;
   font-size: 11px;
@@ -141,7 +146,20 @@ h1 {
   color: #1f2329;
 }
 
-.btn-copy:hover { background: #e2e6ec; }
+.field-actions .btn:hover { background: #e2e6ec; }
+
+.clear-btn {
+  width: 100%;
+  margin-top: 10px;
+  padding: 4px 0;
+  background: none;
+  border: none;
+  color: #cf1322;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.clear-btn:hover { text-decoration: underline; }
 
 .cookie-section {
   margin-top: 14px;
