@@ -156,6 +156,15 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo) => {
   }
 });
 
+// 用户中途关闭登录页时解除“等待登录”状态，否则 popup 按钮会一直禁用
+chrome.tabs.onRemoved.addListener(async (tabId) => {
+  const session = await chrome.storage.session.get(["login_tab_id", "login_in_progress"]);
+  if (session.login_in_progress && session.login_tab_id === tabId) {
+    await chrome.storage.session.set({ login_in_progress: false });
+    await setStatus({ state: "idle" });
+  }
+});
+
 // ---------- 与 popup 通信 ----------
 chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
   if (msg && msg.type === "start_login") {
