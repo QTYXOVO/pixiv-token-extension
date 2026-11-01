@@ -111,6 +111,10 @@ chrome.storage.onChanged.addListener((changes, area) => {
 
 // ---------- Cookie（Web 端 PHPSESSID） ----------
 async function loadCookie(showError) {
+  if (!chrome.cookies) {
+    cookieEl.placeholder = "缺少 cookies 权限，请到 chrome://extensions 重新加载扩展";
+    return false;
+  }
   btnCookie.disabled = true;
   try {
     const cookie = await chrome.cookies.get({ url: "https://www.pixiv.net/", name: "PHPSESSID" });
